@@ -399,7 +399,7 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     NSString *userId = [cookieDict objectForKey:@"ds_user_id"];
-    
+    self.userId = userId;
     if (self.beginGetUserInfoHandler) {
         self.beginGetUserInfoHandler();
     }
