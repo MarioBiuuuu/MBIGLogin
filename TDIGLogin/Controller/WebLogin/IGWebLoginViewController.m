@@ -640,4 +640,56 @@
     }
  
 }
+
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"Web login failed, use another way to continue." preferredStyle:UIAlertControllerStyleAlert];
+    __weak typeof(self) weakSelf = self;
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        strongSelf.isClose = YES;
+        UIViewController *targetVc = strongSelf.presentingViewController;
+        [strongSelf dismissViewControllerAnimated:NO completion:^{
+            UIViewController *loginVc = [[IGLoginManager sharedInstance] loginViewControllerWithType:IGLoginTypeAPI];
+            loginVc.modalPresentationStyle = UIModalPresentationFullScreen;
+            [targetVc presentViewController:loginVc animated:NO completion:nil];
+        }];
+
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        strongSelf.isClose = YES;
+        [strongSelf dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [alert addAction:okAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"Web login failed, use another way to continue." preferredStyle:UIAlertControllerStyleAlert];
+    __weak typeof(self) weakSelf = self;
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        strongSelf.isClose = YES;
+        UIViewController *targetVc = strongSelf.presentingViewController;
+        [strongSelf dismissViewControllerAnimated:NO completion:^{
+            UIViewController *loginVc = [[IGLoginManager sharedInstance] loginViewControllerWithType:IGLoginTypeAPI];
+            loginVc.modalPresentationStyle = UIModalPresentationFullScreen;
+            [targetVc presentViewController:loginVc animated:NO completion:nil];
+        }];
+
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        strongSelf.isClose = YES;
+        [strongSelf dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [alert addAction:okAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 @end
