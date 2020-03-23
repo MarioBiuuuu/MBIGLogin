@@ -4,6 +4,7 @@
 #import "IGLoginManager.h"
 #import "IGLInsCommonHeader.h"
 #import "IGLInsRequest.h"
+#import "IGInsLoginTopView.h"
 
 #import <WebKit/WebKit.h>
 #import <Masonry/Masonry.h>
@@ -11,10 +12,6 @@
 #import <Toast/Toast.h>
 
 @interface IGWebLoginViewController ()<WKNavigationDelegate, WKUIDelegate>
-@property (nonatomic, strong) UIView *topOverlayerView;
-@property (nonatomic, strong) UIView *topSettingOverlayerView;
-@property (nonatomic, strong) UIView *tipView;
-@property (nonatomic, strong) UILabel *tipLab;
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) UIButton *closeBtn;
 @property (nonatomic, copy) NSString *userId;
@@ -23,6 +20,9 @@
 @property (nonatomic, copy) NSString *loginUserName;
 @property (nonatomic, copy) NSString *loginPassword;
 
+@property (nonatomic, strong) UIView *tipView;
+@property (nonatomic, strong) UILabel *tipLab;
+@property (nonatomic, strong) IGInsLoginTopView *topView;
 
 @property (nonatomic, strong) UIView *loginLoadingView;
 @property (nonatomic, strong) UILabel *indicatorLoadingLabel;
@@ -65,7 +65,9 @@
     [cache setMemoryCapacity:0];
     
     [self resetUI];
-
+    NSString *appName = [IGLoginManager sharedInstance].appstore_appName.length > 0 ? [IGLoginManager sharedInstance].appstore_appName : [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
+    NSString *tip = [NSString stringWithFormat:@"%@ never sees or stores your Instagram password.", appName];
+    self.tipLab.text = tip;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -75,7 +77,41 @@
 
 #pragma mark -
 #pragma mark - Intial Methods
-
+- (IGInsLoginTopView *)topView {
+    if (!_topView) {
+        _topView = [[NSBundle bundleWithPath: DEF_BundlePath] loadNibNamed:@"IGInsLoginTopView" owner:nil options:nil].firstObject;
+        _topView.frame = CGRectMake(0, 0, DEF_SCREEN_WIDTH, k_Height_NavBar);
+    }
+    return _topView;
+}
+- (UIView *)tipView {
+    if (!_tipView) {
+        _tipView = [[UIView alloc] init];
+        _tipView.frame = CGRectMake(0, CGRectGetMaxY(self.webView.frame), UIScreen.mainScreen.bounds.size.width, 70 + DEF_SafeAreaBottom);
+        _tipView.backgroundColor = [UIColor colorWithRed:23.0 / 255.0 green:24.0 / 255.0 blue:52.0 / 255.0 alpha:1];
+    }
+    return _tipView;
+}
+- (UILabel *)tipLab {
+    if (!_tipLab) {
+        _tipLab = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, UIScreen.mainScreen.bounds.size.width - 40, 70)];
+        _tipLab.numberOfLines = 2;
+        _tipLab.textAlignment = NSTextAlignmentCenter;
+        _tipLab.font = [UIFont systemFontOfSize:13.f];
+        _tipLab.textColor = [UIColor whiteColor];
+    }
+    return _tipLab;
+}
+- (WKWebView *)webView {
+    if (!_webView) {
+        _webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
+        _webView.frame = CGRectMake(0, CGRectGetMaxY(self.topView.frame), UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height - k_Height_StatusBar - DEF_SafeAreaBottom - 70 - 44);
+        _webView.backgroundColor = [UIColor colorWithRed:250.0 / 255.0 green:250.0 / 255.0 blue:250.0 / 255.0 alpha:1];
+        _webView.navigationDelegate = self;
+        [_webView.configuration.userContentController addScriptMessageHandler:self name:@"InsLoginHandler"];
+    }
+    return _webView;
+}
 - (void)initLoginBgView {
     if (_loginLoadingView && _loginLoadingView.superview) {
         [_loginLoadingView removeFromSuperview];
@@ -84,8 +120,9 @@
     _loginLoadingView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_loginLoadingView];
     [_loginLoadingView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(k_Height_StatusBar + 10 + 30);
-        make.bottom.left.right.equalTo(self.view);
+        make.top.equalTo(self.view).offset(k_Height_StatusBar + 44);
+        make.left.right.equalTo(self.view);
+        make.bottom.mas_equalTo(-(70 + DEF_SafeAreaBottom));
     }];
     
     UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -124,39 +161,12 @@
     } else {
         NSLog(@"*-*-* showLoginViewLoadingViewStatus NO");
     }
-    
-    
+
     _loginLoadingView.hidden = !isShow;
-    
-    
+
 }
 
 - (void)resetUI {
-    
-    if (@available(iOS 11.0, *)) {
-        CGRect webFrame = CGRectMake(0, self.view.safeAreaInsets.top , self.view.bounds.size.width, self.view.bounds.size.height - self.view.safeAreaInsets.top - self.view.safeAreaInsets.bottom);
-        self.webView.frame = webFrame;
-    } else {
-        self.webView.frame = CGRectMake(0, 0 , self.view.bounds.size.width, self.view.bounds.size.height);
-    }
-    
-    NSString *appName = [IGLoginManager sharedInstance].appstore_appName;
-    if (appName.length == 0) {
-        appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
-    }
-    NSString *tip = [NSString stringWithFormat:@"%@ never sees or stores your Instagram password.", appName];
-    tip = @"The App will never store or use your instagram information.";
-    self.tipLab.text = tip;
-    
-    
-    if (@available(iOS 11.0, *)) {
-        _topOverlayerView.frame = CGRectMake(0, self.view.safeAreaInsets.top, self.view.bounds.size.width, 60);
-        _topSettingOverlayerView.frame = CGRectMake(0, self.view.safeAreaInsets.top + 60, self.view.bounds.size.width, 44);
-    } else {
-        _topOverlayerView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 60);
-        _topSettingOverlayerView.frame = CGRectMake(0, 60, self.view.bounds.size.width, 44);
-    }
-    _topSettingOverlayerView.hidden = YES;
     
     [self.view bringSubviewToFront:_loginLoadingView];
  
@@ -164,57 +174,20 @@
 
 /** 视图初始化 */
 - (void)initialUI {
-    
-    _webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
-    _webView.backgroundColor = [UIColor colorWithRed:250.0 / 255.0 green:250.0 / 255.0 blue:250.0 / 255.0 alpha:1];
-    _webView.navigationDelegate = self;
-    _webView.scrollView.scrollEnabled = NO;
+    __weak typeof(self) weakSelf = self;
+    [self.topView setCloaseAction:^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+       [strongSelf closeLoginPage];
+    }];
+    [self.topView setNeedShowClose:self.showCloseBtn];
+
     [self.view addSubview:self.webView];
+    
+    [self.view addSubview:self.tipView];
+    [self.tipView addSubview:self.tipLab];
+    [self.view addSubview:self.topView];
 
-    if (@available(iOS 11.0, *)) {
-        _topOverlayerView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.safeAreaInsets.top, self.view.bounds.size.width, 40)];
-        _topSettingOverlayerView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.safeAreaInsets.top + 40, 50, 40)];
-    } else {
-        _topOverlayerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
-        _topSettingOverlayerView = [[UIView alloc] initWithFrame:CGRectMake(0, 40, 50, 40)];
-    }
-    _topOverlayerView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_topOverlayerView];
-    _topSettingOverlayerView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_topSettingOverlayerView];
-    
-
-    _tipView = [[UIView alloc] init];
-    if (@available(iOS 11.0, *)) {
-        _tipView.frame = CGRectMake(0, CGRectGetMaxY(self.webView.frame) - 100, UIScreen.mainScreen.bounds.size.width, 100 + self.view.safeAreaInsets.bottom);
-    } else {
-        _tipView.frame = CGRectMake(0, CGRectGetMaxY(self.webView.frame) - 100, UIScreen.mainScreen.bounds.size.width, 100);
-    }
-    _tipView.backgroundColor = [UIColor colorWithRed:247.0 / 255.0 green:247.0 / 255.0 blue:247.0 / 255.0 alpha:1];
-    
-    [self.view addSubview:_tipView];
-//
-    _tipLab = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, UIScreen.mainScreen.bounds.size.width - 40, 70)];
-    _tipLab.numberOfLines = 2;
-    _tipLab.textAlignment = NSTextAlignmentCenter;
-    _tipLab.font = [UIFont systemFontOfSize:13.f];
-    _tipLab.textColor = [UIColor colorWithRed:23.0 / 255.0 green:24.0 / 255.0 blue:52.0 / 255.0 alpha:1];
-    [_tipView addSubview:_tipLab];
-    
-    if (self.showCloseBtn) {
-        _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_closeBtn addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
-        //log_in_close_ic  ic_c_c
-        [_closeBtn setImage:[UIImage imageNamed:@"log_in_close_ic" inBundle:[NSBundle bundleWithPath:[[NSBundle bundleForClass: self.class]pathForResource:@"TTIGLoginProject" ofType:@"bundle"]] compatibleWithTraitCollection:nil] forState:UIControlStateNormal];
-        _closeBtn.frame = CGRectMake(10, k_Height_StatusBar + 10, 30, 30);
-        [self.view addSubview:self.closeBtn];
-    }
     self.view.backgroundColor = [UIColor colorWithRed:250.0 / 255.0 green:250.0 / 255.0 blue:250.0 / 255.0 alpha:1];
-    
-    
-    
-    
-    
 }
 
 - (void)initialSubViews {
@@ -236,19 +209,7 @@
     if (@available(iOS 11.0, *)) {
         [store.httpCookieStore getAllCookies:^(NSArray<NSHTTPCookie *> * _Nonnull cookies) {
             NSLog(@"*-*-* cookieDict = %@", cookies);
-//            for (NSHTTPCookie *cookie in cookies) {
-//                [cookieDict setValue:cookie.value forKey:cookie.name];
-//            }
-//            self.loginCookieDict = cookieDict;
-//            NSString *userId = cookieDict[@"ds_user_id"];
-//            if (userId) {
-//                NSLog(@"*-*-* cookieDict = %@",userId);
-//                compeltion();
-//            } else {
-//                NSLog(@"*-*-* cookieDict = 没有");
-//            }
-            
-            
+
         }];
     } else {
         // Fallback on earlier versions

@@ -1,8 +1,8 @@
 #ifndef IGLInsCommonHeader_h
 #define IGLInsCommonHeader_h
 
-#define DEF_BundlePath [[NSBundle bundleForClass: self.class]pathForResource:@"GPInstagramLogin" ofType:@"bundle"]
-#define DEF_Name(name) [[[NSBundle bundleForClass: self.class]pathForResource:@"GPInstagramLogin" ofType:@"bundle"] stringByAppendingPathComponent: name]
+#define DEF_BundlePath [[NSBundle bundleForClass: self.class]pathForResource:@"IGLogin" ofType:@"bundle"]
+#define DEF_Name(name) [[[NSBundle bundleForClass: self.class]pathForResource:@"IGLogin" ofType:@"bundle"] stringByAppendingPathComponent: name]
 
 // 交互方法名
 #define METHODNAMEKEY @"methodName"

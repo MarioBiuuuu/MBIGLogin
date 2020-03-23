@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -41,10 +41,10 @@
                     </subviews>
                     <color key="backgroundColor" red="0.090196078430000007" green="0.094117647060000004" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="AgG-zm-nUX" firstAttribute="centerY" secondItem="J37-cR-qkD" secondAttribute="centerY" id="GnT-Vl-Kij"/>
                         <constraint firstItem="aj6-U6-NGY" firstAttribute="centerX" secondItem="J37-cR-qkD" secondAttribute="centerX" id="JBw-0c-z6V"/>
+                        <constraint firstAttribute="bottom" secondItem="AgG-zm-nUX" secondAttribute="bottom" constant="14.5" id="UBr-aO-O7W"/>
                         <constraint firstAttribute="right" secondItem="AgG-zm-nUX" secondAttribute="right" constant="8" id="mfU-6M-SKb"/>
-                        <constraint firstItem="aj6-U6-NGY" firstAttribute="centerY" secondItem="AgG-zm-nUX" secondAttribute="centerY" id="moP-2W-FUX"/>
+                        <constraint firstAttribute="bottom" secondItem="aj6-U6-NGY" secondAttribute="bottom" constant="17" id="qj6-lg-mYp"/>
                     </constraints>
                 </view>
             </subviews>

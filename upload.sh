@@ -1,1 +1,1 @@
-pod repo push GPowerPrivateRepo GPInstagramLogin.podspec --verbose --allow-warnings
+pod repo push TDRepo TDIGLogin.podspec --verbose --allow-warnings

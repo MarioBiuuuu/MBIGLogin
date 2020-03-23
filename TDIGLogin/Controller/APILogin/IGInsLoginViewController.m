@@ -100,7 +100,7 @@
 - (IGInsLoginTopView *)topView {
     if (!_topView) {
         _topView = [[NSBundle bundleWithPath: DEF_BundlePath] loadNibNamed:@"IGInsLoginTopView" owner:nil options:nil].firstObject;
-        _topView.frame = CGRectMake(0, k_Height_StatusBar, DEF_SCREEN_WIDTH, 44);
+        _topView.frame = CGRectMake(0, 0, DEF_SCREEN_WIDTH, k_Height_NavBar);
     }
     return _topView;
 }

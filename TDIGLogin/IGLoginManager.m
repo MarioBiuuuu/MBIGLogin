@@ -35,6 +35,7 @@
     if (type == IGLoginTypeAPI) {
         IGInsLoginViewController *loginVc = [[IGInsLoginViewController alloc] init];
         loginVc.showCloseBtn = self.showCloseBtn;
+        loginVc.beginLoginHandler = self.beginLoginHandler;
         loginVc.beginGetUserInfoHandler = self.beginGetUserInfoHandler;
         loginVc.closeLoginPageHandler = self.closeLoginPageHandler;
         loginVc.authCompleteHandler = self.authCompleteHandler;
