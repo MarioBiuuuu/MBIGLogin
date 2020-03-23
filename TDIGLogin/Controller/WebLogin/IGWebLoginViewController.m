@@ -404,7 +404,8 @@
         self.beginGetUserInfoHandler();
     }
     __weak typeof(self) weakSelf = self;
-    [[IGLInsRequest sharedInstance] getIGUserDetailWithUserID:userId completion:^(BOOL success, NSString * _Nonnull errorMessage, NSDictionary * _Nonnull userDetailsDic) {
+    
+    [[IGLInsRequest sharedInstance] getUserInfo:userId token:cookieDict[@"csrftoken"] user:cookieDict[@"ds_user"] userId:userId mid:cookieDict[@"mid"] sessionId:cookieDict[@"sessionid"] finished:^(BOOL success, NSString * _Nonnull errorMessage, NSDictionary * _Nonnull userDetailsDic) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         NSString *authenKey = [NSString stringWithFormat:@"hasAuthenticationInThisDevice_%@", strongSelf.userId];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:authenKey];
@@ -431,6 +432,34 @@
             });
         }
     }];
+    
+//    [[IGLInsRequest sharedInstance] getIGUserDetailWithUserID:userId completion:^(BOOL success, NSString * _Nonnull errorMessage, NSDictionary * _Nonnull userDetailsDic) {
+//        __strong typeof(weakSelf) strongSelf = weakSelf;
+//        NSString *authenKey = [NSString stringWithFormat:@"hasAuthenticationInThisDevice_%@", strongSelf.userId];
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:authenKey];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [MBProgressHUD hideHUDForView:strongSelf.view animated:YES];
+//        });
+//        NSLog(@"*-*-* strongSelf.getUserInfoComplete %d", success);
+//        NSLog(@"*-*-* strongSelf.getUserInfoComplete");
+//        if (strongSelf.getUserInfoComplete) {
+//            NSLog(@"*-*-* strongSelf.getUserInfoComplete ---");
+//            strongSelf.getUserInfoComplete(success, errorMessage, userDetailsDic);
+//        }
+//        if (success) {
+//            NSLog(@"*-*-* getIGUserDetailWithUserID success");
+//
+//            [strongSelf closeLoginPage];
+//
+//        } else {
+//            [strongSelf closeLoginPage];
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [strongSelf.view makeToast:errorMessage duration:3.0 position:[NSValue valueWithCGPoint:CGPointMake(DEF_SCREEN_WIDTH * 0.5, DEF_SCREENH_HEIGHT - DEF_SafeAreaBottom - k_Height_NavBar - 50)]];
+//            });
+//        }
+//    }];
     
      
     
