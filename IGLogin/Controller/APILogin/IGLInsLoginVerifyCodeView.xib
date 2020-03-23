@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="om4-jV-w7d" customClass="IGLInsLoginVerifyCodeView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
+                    <rect key="frame" x="47.5" y="228.5" width="280" height="210"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1Y-Fn-XlE">
+                            <rect key="frame" x="30" y="30" width="220" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JJJ-LB-mLM">
+                            <rect key="frame" x="30" y="44" width="220" height="40"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="lcx-Xq-qkN"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVt-v1-62w">
+                            <rect key="frame" x="90" y="104" width="100" height="30"/>
+                            <color key="backgroundColor" red="0.046022227110000001" green="0.4944432218" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="1vL-pX-IIh"/>
+                                <constraint firstAttribute="height" constant="30" id="GOk-H2-ogj"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="OK">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="okAction:" destination="om4-jV-w7d" eventType="touchUpInside" id="OKC-xn-yvp"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yne-oq-tU7">
+                            <rect key="frame" x="240" y="3" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="e4q-tD-nqe"/>
+                                <constraint firstAttribute="width" constant="30" id="xp3-h0-s4q"/>
+                            </constraints>
+                            <state key="normal" image="icon_checkpoint_close.png"/>
+                            <connections>
+                                <action selector="closeAction:" destination="om4-jV-w7d" eventType="touchUpInside" id="bNI-kB-b3q"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="6hq-hL-afh"/>
+                        <constraint firstAttribute="height" constant="210" id="6sg-8i-o7V"/>
+                        <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Yne-oq-tU7" secondAttribute="trailing" constant="10" id="BFy-bn-ybb"/>
+                        <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="K1Y-Fn-XlE" secondAttribute="trailing" constant="30" id="Cn4-Jb-Esf"/>
+                        <constraint firstItem="K1Y-Fn-XlE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="FdH-4Y-VYz"/>
+                        <constraint firstItem="K1Y-Fn-XlE" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="Fss-8O-bc7"/>
+                        <constraint firstItem="JJJ-LB-mLM" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="I4e-7m-jMn"/>
+                        <constraint firstItem="iVt-v1-62w" firstAttribute="centerX" secondItem="JJJ-LB-mLM" secondAttribute="centerX" id="Mi5-9z-O9f"/>
+                        <constraint firstItem="Yne-oq-tU7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="3" id="PPA-8e-EAj"/>
+                        <constraint firstItem="JJJ-LB-mLM" firstAttribute="top" secondItem="K1Y-Fn-XlE" secondAttribute="bottom" constant="14" id="Tra-Ir-sdp"/>
+                        <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="JJJ-LB-mLM" secondAttribute="trailing" constant="30" id="YsP-Ox-v6x"/>
+                        <constraint firstItem="iVt-v1-62w" firstAttribute="top" secondItem="JJJ-LB-mLM" secondAttribute="bottom" constant="20" id="jmJ-Qn-bzl"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="iN0-l3-epB" firstAttribute="centerX" secondItem="om4-jV-w7d" secondAttribute="centerX" id="JFJ-Vg-Rvs"/>
+                <constraint firstItem="iN0-l3-epB" firstAttribute="centerY" secondItem="om4-jV-w7d" secondAttribute="centerY" id="LO1-0Y-eY7"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="GHG-wh-3GX"/>
+            <connections>
+                <outlet property="codeView" destination="JJJ-LB-mLM" id="VPi-dz-RYU"/>
+                <outlet property="okBtn" destination="iVt-v1-62w" id="Rz9-CA-TLl"/>
+                <outlet property="tipLab" destination="K1Y-Fn-XlE" id="Ld7-kR-hUc"/>
+            </connections>
+            <point key="canvasLocation" x="142" y="154"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_checkpoint_close.png" width="15" height="15"/>
+    </resources>
+</document>

@@ -1,0 +1,10 @@
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+NS_ASSUME_NONNULL_BEGIN
+@interface IGLInsNotificationSet : NSObject
+UIKIT_EXTERN NSNotificationName const IGLInsFBLoginCancelNotification_Login;
+UIKIT_EXTERN NSNotificationName const IGLInsFBLoginSuccessNotification_Login;
+UIKIT_EXTERN NSNotificationName const IGLInsFBLoginGetUserInfoSuccessNotification_Login;
+UIKIT_EXTERN NSNotificationName const IGLInsFBLoginGetUserInfoFailedNotification_Login;
+@end
+NS_ASSUME_NONNULL_END
