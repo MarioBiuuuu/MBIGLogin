@@ -406,6 +406,10 @@
     __weak typeof(self) weakSelf = self;
     [[IGLInsRequest sharedInstance] getIGUserDetailWithUserID:userId completion:^(BOOL success, NSString * _Nonnull errorMessage, NSDictionary * _Nonnull userDetailsDic) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
+        NSString *authenKey = [NSString stringWithFormat:@"hasAuthenticationInThisDevice_%@", strongSelf.userId];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:authenKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:strongSelf.view animated:YES];
         });
