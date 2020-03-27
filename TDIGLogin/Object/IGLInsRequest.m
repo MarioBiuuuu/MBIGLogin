@@ -100,7 +100,7 @@ static NSInteger dp_ig_signKeyVersion = 5;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer=[AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         NSLog(@"%@", responseObject);
         if (!error) {
             NSString *metaCode = [responseObject objectForKey:@"status"];
@@ -166,7 +166,7 @@ static NSInteger dp_ig_signKeyVersion = 5;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer=[AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             NSString *metaCode = [responseObject objectForKey:@"status"];
             if([metaCode isEqualToString:@"ok"]){
@@ -261,7 +261,7 @@ static NSInteger dp_ig_signKeyVersion = 5;
     [request setAllHTTPHeaderFields:headers];
     [request setHTTPShouldHandleCookies:YES];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             NSString *metaCode = [responseObject objectForKey:@"status"];
             if([metaCode isEqualToString:@"ok"]){
@@ -299,7 +299,7 @@ static NSInteger dp_ig_signKeyVersion = 5;
     [request setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
     [request setValue:[self userAgentString] forHTTPHeaderField:@"User-Agent"];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             NSString *metaCode = [responseObject objectForKey:@"status"];
             if([metaCode isEqualToString:@"ok"]){
@@ -336,7 +336,7 @@ static NSInteger dp_ig_signKeyVersion = 5;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer=[AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             NSString *metaCode = [responseObject objectForKey:@"status"];
             if([metaCode isEqualToString:@"ok"]){
@@ -377,7 +377,7 @@ static NSInteger dp_ig_signKeyVersion = 5;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer=[AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             NSString *metaCode = [responseObject objectForKey:@"status"];
             if([metaCode isEqualToString:@"ok"]){
@@ -426,7 +426,7 @@ static NSInteger dp_ig_signKeyVersion = 5;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer=[AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             NSString *metaCode = [responseObject objectForKey:@"status"];
             if([metaCode isEqualToString:@"ok"]){
@@ -467,7 +467,7 @@ static NSInteger dp_ig_signKeyVersion = 5;
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             NSString *metaCode = [responseObject objectForKey:@"status"];
             if([metaCode isEqualToString:@"ok"]){
