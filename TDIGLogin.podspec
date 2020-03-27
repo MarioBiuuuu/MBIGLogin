@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "TDIGLogin"
-  s.version      = "1.0.6"
+  s.version      = "1.0.7"
   s.summary      = "IGLogin."
 
   # This description is used to generate tags and improve search results.
@@ -145,7 +145,7 @@ Pod::Spec.new do |s|
   # s.dependency "BLMediator"
   # s.dependency "MBMediator"
 
-  s.dependency "AFNetworking"
+  s.dependency "AFNetworking", '~>2.7.0'
   s.dependency "MBProgressHUD"
   s.dependency "Toast"
   s.dependency "Masonry"
