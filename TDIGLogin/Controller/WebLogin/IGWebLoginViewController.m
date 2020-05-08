@@ -57,7 +57,7 @@
     for (cookie in [storage cookies]){
         [storage deleteCookie:cookie];
     }
-    //清除UIWebView的缓存
+    //清除WebView的缓存
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
     NSURLCache * cache = [NSURLCache sharedURLCache];
     [cache removeAllCachedResponses];

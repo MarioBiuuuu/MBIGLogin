@@ -100,7 +100,12 @@ static NSInteger dp_ig_signKeyVersion = 5;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer=[AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    
+    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         NSLog(@"%@", responseObject);
         if (!error) {
             NSString *metaCode = [responseObject objectForKey:@"status"];
@@ -136,6 +141,7 @@ static NSInteger dp_ig_signKeyVersion = 5;
             }
         }
     }];
+
     [task resume];
 }
 - (void)loginInstagram:(NSString *)username password:(NSString *)password complete:(void (^)(NSDictionary *loginUserDic, NSString *cookie) )completeBlock checkPointfailed:(void (^)(NSString *subApiUrlPath))checkPointfailedBlock twoFactorFailed:(void (^)(NSString *twoFactorIdentifier, NSString *userName, NSString *mobile, NSString *csrftoken) )twoFactorFailedBlock failed:(void (^)(NSString *errorMsg))failedBlock {
@@ -166,7 +172,12 @@ static NSInteger dp_ig_signKeyVersion = 5;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer=[AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    
+    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             NSString *metaCode = [responseObject objectForKey:@"status"];
             if([metaCode isEqualToString:@"ok"]){
@@ -261,7 +272,12 @@ static NSInteger dp_ig_signKeyVersion = 5;
     [request setAllHTTPHeaderFields:headers];
     [request setHTTPShouldHandleCookies:YES];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    
+    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             NSString *metaCode = [responseObject objectForKey:@"status"];
             if([metaCode isEqualToString:@"ok"]){
@@ -299,7 +315,12 @@ static NSInteger dp_ig_signKeyVersion = 5;
     [request setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
     [request setValue:[self userAgentString] forHTTPHeaderField:@"User-Agent"];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    
+    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             NSString *metaCode = [responseObject objectForKey:@"status"];
             if([metaCode isEqualToString:@"ok"]){
@@ -336,7 +357,12 @@ static NSInteger dp_ig_signKeyVersion = 5;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer=[AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    
+    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             NSString *metaCode = [responseObject objectForKey:@"status"];
             if([metaCode isEqualToString:@"ok"]){
@@ -377,7 +403,12 @@ static NSInteger dp_ig_signKeyVersion = 5;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer=[AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    
+    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             NSString *metaCode = [responseObject objectForKey:@"status"];
             if([metaCode isEqualToString:@"ok"]){
@@ -426,7 +457,12 @@ static NSInteger dp_ig_signKeyVersion = 5;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer=[AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    
+    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             NSString *metaCode = [responseObject objectForKey:@"status"];
             if([metaCode isEqualToString:@"ok"]){
@@ -467,7 +503,12 @@ static NSInteger dp_ig_signKeyVersion = 5;
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+    
+    NSURLSessionDataTask *task = [manager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             NSString *metaCode = [responseObject objectForKey:@"status"];
             if([metaCode isEqualToString:@"ok"]){
