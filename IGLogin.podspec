@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "TDIGLogin"
+  s.name         = "MBIGLogin"
   s.version      = "1.0.8"
   s.summary      = "IGLogin."
 
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
                     this is IGLogin
                    DESC
 
-  s.homepage     = "https://gitee.com/GPowers/GPInstagramLogin"
+  s.homepage     = "https://github.com/MarioBiuuuu/MBIGLogin"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://gitee.com/TDRepo/TDIGLogin.git", :tag => s.version }
+  s.source       = { :git => "https://github.com/MarioBiuuuu/MBIGLogin.git", :tag => s.version }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -90,10 +90,10 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "TDIGLogin/**/*.{h,m}"
+  s.source_files  = "IGLogin/**/*.{h,m}"
 
   s.resource_bundles = {
-    'IGLogin' => ["TDIGLogin/**/*.{xib, storyBoard}", "TDIGLogin/**/*.{png,html,css}"]
+    'IGLogin' => ["IGLogin/**/*.{xib, storyBoard}", "IGLogin/**/*.{png,html,css}"]
   }
 
   # s.resources = ["IGLogin/**/*.{xib, storyBoard}", "IGLogin/**/*.{png,html,css}"]
@@ -145,7 +145,7 @@ Pod::Spec.new do |s|
   # s.dependency "BLMediator"
   # s.dependency "MBMediator"
 
-  s.dependency "AFNetworking", '~>4.0.1'
+  s.dependency "AFNetworking"
   s.dependency "MBProgressHUD"
   s.dependency "Toast"
   s.dependency "Masonry"
